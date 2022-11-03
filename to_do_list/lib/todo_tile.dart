@@ -17,17 +17,17 @@ class TodoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
       child: Slidable(
         endActionPane: ActionPane(
-          motion: StretchMotion(),
+          motion: const StretchMotion(),
           children: [
             SlidableAction(
               onPressed: deleteTask,
               icon: Icons.delete,
               backgroundColor: Colors.red.shade600,
-              borderRadius:BorderRadius.circular(12) ,
+              borderRadius: BorderRadius.circular(12),
             ),
           ],
         ),
@@ -44,13 +44,18 @@ class TodoTile extends StatelessWidget {
                 onChanged: onChanged,
                 activeColor: Colors.purple[200],
               ),
-              Text(
-                taskName,
-                style: GoogleFonts.rubik(
-                  fontSize: 20,
-                  decoration: taskCompleted
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
+              Flexible(
+                child: Text(
+                  taskName,
+                  softWrap: true,
+                  overflow: TextOverflow.visible,
+                  maxLines: 6,
+                  style: GoogleFonts.rubik(
+                    fontSize: 20,
+                    decoration: taskCompleted
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                  ),
                 ),
               ),
             ],
